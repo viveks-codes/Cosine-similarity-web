@@ -19,14 +19,14 @@ import math
 
 
 def cosineSimilarity():
-	mode = radio("select mode ", options=['Manual', 'File upload'])
+	mode = radio("Select Mode ", options=['Manual', 'File upload'])
 	if(mode=='Manual'):
 		# create list for unique words
 		universalSetOfUniqueWords = []
 		matchPercentage = 0
 		# converting user quesry into lowercase
 
-		inputQuery = input("Enter your query: ",type=TEXT)
+		inputQuery = input("Enter String A : ",type=TEXT)
 		lowercaseQuery = inputQuery.lower()
 		queryWordList = re.sub("[^\w]", " ",lowercaseQuery).split()
 		# finding unique words from query
@@ -83,13 +83,13 @@ def cosineSimilarity():
 		matchPercentage = cosine*100
 
 
-		output = "Input query text matches {}% with database.".format(matchPercentage)
-		outputcosine = " Cosine similarity between 2 document is {}".format(cosine)
-		put_text("total number of words in string A : {}".format(len(inputQuery)))
-		put_text("total number of words in string B : {}".format(len(inputQuery2)))
-		put_text("total number of unique words in both Strings : {}".format(len(universalSetOfUniqueWords)))
-		put_text("magnitude of string A is {}".format(queryVectorMagnitude))
-		put_text("magnitude of string B is {}".format(databaseVectorMagnitude))
+		output = "Both Strings Matches {}% With Eachother.".format(matchPercentage)
+		outputcosine = " Cosine Similarity Between 2 Document is {}.".format(cosine)
+		put_text("Total Number of Characters in string A : {}.".format(len(inputQuery)))
+		put_text("Total Number of Characters in string B : {}.".format(len(inputQuery2)))
+		put_text("Total Number of Unique Words in both Strings : {}.".format(len(universalSetOfUniqueWords)))
+		put_text("Magnitude of String A is {}.".format(queryVectorMagnitude))
+		put_text("Magnitude of String B is {}.".format(databaseVectorMagnitude))
 		put_text(output)
 		put_text(outputcosine)
 	else :
@@ -98,7 +98,7 @@ def cosineSimilarity():
 		universalSetOfUniqueWords = []
 		matchPercentage = 0
 		# converting user quesry into lowercase
-		inputQuery = file_upload(label='Upload txt file', accept='.txt')
+		inputQuery = file_upload(label='Select a Text File 1', accept='.txt')
 		inputQuery = inputQuery['content']
 		#print(inputQuery)
 		lowercaseQuery = str(inputQuery).lower()
@@ -107,7 +107,7 @@ def cosineSimilarity():
 		for word in queryWordList:
 			if word not in universalSetOfUniqueWords:
 				universalSetOfUniqueWords.append(word)
-		inputQuery2 = file_upload(label='Upload txt file', accept='.txt')
+		inputQuery2 = file_upload(label='Select a Text File 2', accept='.txt')
 		inputQuery2 = inputQuery2['content']
 		#print(inputQuery2)
 		lowercaseQuery2 = str(inputQuery2).lower()
@@ -162,13 +162,13 @@ def cosineSimilarity():
 
 
 
-		output = "Input query text matches {}% with database.".format(matchPercentage)
-		outputcosine = " Cosine similarity between 2 document is {}".format(cosine)
-		put_text("total number of char in doc1 : {}".format(len(inputQuery)))
-		put_text("total number of char in doc2 : {}".format(len(inputQuery2)))
-		put_text("total number of unique words in both docs : {}".format(len(universalSetOfUniqueWords)))
-		put_text("magnitude of Doc 1 is {}".format(queryVectorMagnitude))
-		put_text("magnitude of doc 2 is {}".format(databaseVectorMagnitude))
+		output = "Both Docs Matches {}% With Eachother.".format(matchPercentage)
+		outputcosine = " Cosine Similarity Between 2 Document is {}.".format(cosine)
+		put_text("Total Number of Characters in Doc1 : {}.".format(len(inputQuery)))
+		put_text("Total Number of Characters in Doc2 : {}.".format(len(inputQuery2)))
+		put_text("Total Number of Unique Words in both docs : {}.".format(len(universalSetOfUniqueWords)))
+		put_text("Magnitude of Doc 1 is {}.".format(queryVectorMagnitude))
+		put_text("Magnitude of Doc 2 is {}.".format(databaseVectorMagnitude))
 		put_text(output)
 		put_text(outputcosine)
 
